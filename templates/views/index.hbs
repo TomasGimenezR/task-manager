@@ -4,7 +4,8 @@
         <table>
             {{#each tasks}}
             <tr>
-                <td>{{name}}</td>
+                <td><input type="checkbox"></td>
+                <td>{{description}}</td>
                 <td><a href="">Edit</a></td>
                 <td><a href="">Delete</a></td>
                 <td><a href="">Send To...</a></td>
@@ -13,7 +14,7 @@
         </table>
     </div>
     <div class="add_task">
-        <form action="/task" method="post">
+        <form action="/task" method="POST">
             <input type="text" name="description" placeholder="New Task">
             <input type="submit" value="Add">
         </form>
@@ -22,4 +23,22 @@
 </div>
 <div class="folders">
     <h2>Folders</h2>
+    <div class="folder_list">
+        <table>
+            {{#each folders}}
+            <tr>
+                <td>{{name}}</td>
+                <td><a href="">View Items</a></td>
+                <td><a href="">Remove</a></td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+
+    <div class="add_folder">
+        <form action="/folder" method="post">
+            <input type="text" name="name" placeholder="New Folder">
+            <input type="submit" value="Add">
+        </form>
+    </div>
 </div>
