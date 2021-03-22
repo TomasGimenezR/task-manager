@@ -1,0 +1,25 @@
+<div class="todo_list">
+    <h2>To-do List</h2>
+    <div class="task_list">
+        <table>
+            {{#each tasks}}
+            <tr>
+                <td>{{name}}</td>
+                <td><a href="">Edit</a></td>
+                <td><a href="">Delete</a></td>
+                <td><a href="">Send To...</a></td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+    <div class="add_task">
+        <form action="/task" method="post">
+            <input type="text" name="description" placeholder="New Task">
+            <input type="submit" value="Add">
+        </form>
+
+    </div>
+</div>
+<div class="folders">
+    <h2>Folders</h2>
+</div>
