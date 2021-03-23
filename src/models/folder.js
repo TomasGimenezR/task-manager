@@ -14,6 +14,6 @@ const folderSchema = new mongoose.Schema({
     }]
 })
 
-const Task = mongoose.model('Task', taskSchema)
+const Folder = mongoose.model('Folder', folderSchema)
 
-module.exports = Task
+module.exports = Folder

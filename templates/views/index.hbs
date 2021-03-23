@@ -1,21 +1,28 @@
-<div class="todo_list">
+<div class="todo-list">
     <h2>To-do List</h2>
-    <div class="task_list">
+    <div class="task-list">
         <table>
             {{#each tasks}}
-            <tr>
+            <tr data-id="{{id}}">
                 <td><input type="checkbox"></td>
-                <td>{{description}}</td>
-                <td><a href="">Edit</a></td>
-                <td><a href="">Delete</a></td>
-                <td><a href="">Send To...</a></td>
+                <td class="description">{{description}}</td>
+                <td class="edit-task">Edit</td>
+                <td class="delete-task">Delete</td>
+                <td>
+                    <select id="send-to-folder" name="folder">
+                        <option value="">Send to folder...</option>
+                        {{#each ../folders}}
+                        <option value="{{id}}">{{name}}</option>
+                        {{/each}}
+                    </select>
+                </td>
             </tr>
             {{/each}}
         </table>
     </div>
-    <div class="add_task">
+    <div class="add-task">
         <form action="/task" method="POST">
-            <input type="text" name="description" placeholder="New Task">
+            <input type="text" name="description" placeholder="New Task" autocomplete="off" required>
             <input type="submit" value="Add">
         </form>
 
@@ -23,7 +30,7 @@
 </div>
 <div class="folders">
     <h2>Folders</h2>
-    <div class="folder_list">
+    <div class="folder-list">
         <table>
             {{#each folders}}
             <tr>
@@ -35,9 +42,9 @@
         </table>
     </div>
 
-    <div class="add_folder">
+    <div class="add-folder">
         <form action="/folder" method="post">
-            <input type="text" name="name" placeholder="New Folder">
+            <input type="text" name="name" placeholder="New Folder" autocomplete="off" required>
             <input type="submit" value="Add">
         </form>
     </div>
