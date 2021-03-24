@@ -1,17 +1,18 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const Task = require('../models/task');
 
 const folderSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
         trim: true
-    },
-    tasks: [{
-        task: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Task'
-        }
-    }]
+    }
+})
+
+folderSchema.pre('remove', async function (next) {
+    const folder = this;
+    fol = await Task.deleteMany({ folder });
+    next();
 })
 
 const Folder = mongoose.model('Folder', folderSchema)

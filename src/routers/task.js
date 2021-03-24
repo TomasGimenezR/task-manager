@@ -75,14 +75,20 @@ router.post('/folder', async (req, res) => {
     }
 })
 
+router.delete('/folder', async (req, res) => {
+    const folder = await Folder.findById(req.body.folder_id)
+    folder.remove()
+    res.status(201).send(folder)
+})
+
 router.post('/moveToFolder', async (req, res) => {
     try {
 
         let folder = await Folder.findById(req.body.folder_id)
         let task = await Task.findById(req.body.task_id)
 
-        folder.tasks.push(task)
-        await folder.save()
+        task.folder = folder
+        await task.save()
 
         res.status(200).send()
     } catch (e) {

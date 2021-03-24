@@ -14,10 +14,13 @@
     <div class="folder-list">
         <table>
             {{#each folders}}
-            <tr>
+            <tr data-id="{{id}}">
                 <td>{{name}}</td>
-                <td><a href="">View Items</a></td>
-                <td><a href="">Remove</a></td>
+                <td>
+                    <label class="view-folder">View Items</label>
+                    <div class="hidden-list"></div>
+                </td>
+                <td class="remove-folder">Remove</td>
             </tr>
             {{/each}}
         </table>
