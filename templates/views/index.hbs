@@ -1,5 +1,4 @@
 <div class="todo-list">
-    <h2>To-do List</h2>
     {{>task_list}}
     <div class="add-task">
         <form action="/task" method="POST">
@@ -15,12 +14,11 @@
         <table>
             {{#each folders}}
             <tr data-id="{{id}}">
-                <td>{{name}}</td>
+                <td>- {{name}}</td>
                 <td>
                     <label class="view-folder">View Items</label>
-                    <div class="hidden-list"></div>
                 </td>
-                <td class="remove-folder">Remove</td>
+                <td><label class="remove-folder">Remove</label></td>
             </tr>
             {{/each}}
         </table>
@@ -32,4 +30,6 @@
             <input type="submit" value="Add">
         </form>
     </div>
+    <div id="hidden-list"></div>
+
 </div>

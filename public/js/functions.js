@@ -90,7 +90,7 @@ function moveTaskToFolder() {
 }
 
 function displayFolderItems() {
-    $('.view-folder').click(async function () {
+    $('.view-folder').click(function () {
         var folder_id = $(this).closest("tr").attr('data-id');
         var taskshtml = '<table>'
 
@@ -103,15 +103,14 @@ function displayFolderItems() {
                         taskshtml += `<tr data-id=="${task._id}">`;
                         taskshtml += `<td><input class="chk-task" type="checkbox" checked="${task.completed}"></td>`;
                         taskshtml += `<td class="description">${task.description}</td>`;
-                        taskshtml += `<td class="edit-task">Edit</td></tr>`;
+                        taskshtml += `<td class="edit-task"><label>Edit</label></td></tr>`;
                     })
                     taskshtml += '</table>';
 
-                    $(this).siblings().html(taskshtml);
                     //Slide to show Tasks
-                    console.log(taskshtml);
-                    console.log('this', $(this));
-                    $(this).siblings().slideToggle();
+                    $('#hidden-list').slideToggle();
+
+                    $('#hidden-list').html(taskshtml);
                 }
             })
         } catch (e) {

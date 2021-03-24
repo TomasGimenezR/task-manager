@@ -1,11 +1,12 @@
 <div class="task-list">
+    <h2>To-do List</h2>
     <table>
         {{#each tasks}}
         <tr data-id="{{id}}">
             <td><input class="chk-task" type="checkbox" {{#if completed}} checked="true" {{/if}}></td>
             <td class="description">{{description}}</td>
-            <td class="edit-task">Edit</td>
-            <td class="delete-task">Delete</td>
+            <td class="edit-task"><label>Edit</label></td>
+            <td class="delete-task"><label>Delete</label></td>
             <td>
                 <select class="move-to-folder">
                     <option value="">Move to folder...</option>

@@ -1,6 +1,8 @@
 const path = require('path')
 const express = require('express')
 const hbs = require('hbs')
+const user = require('./routers/user')
+const auth = require('./routers/auth')
 const taskRouter = require('./routers/task')
 require('./db/mongoose')
 
@@ -25,6 +27,8 @@ app.use(express.static(publicDirectoryPath));
 
 //Use Routers
 app.use(taskRouter)
+app.use('/user', user)
+app.use('/auth', auth)
 
 app.listen(port, () => {
     console.log(`Server is up on port ${port}.`);
