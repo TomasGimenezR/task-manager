@@ -90,10 +90,33 @@ function moveTaskToFolder() {
 }
 
 function displayFolderItems() {
-    $('.view-folder').click(function () {
+    $('.view-folder').click(async function () {
+        var folder_id = $(this).closest("tr").attr('data-id');
+        var taskshtml = '<table>'
 
-        //Slide to show Tasks
-        $(this).siblings().slideToggle();
+        try {
+            $.ajax({
+                url: `/tasks/${folder_id}`,
+                type: 'GET',
+                success: function (tasks) {
+                    tasks.forEach(function (task) {
+                        taskshtml += `<tr data-id=="${task._id}">`;
+                        taskshtml += `<td><input class="chk-task" type="checkbox" checked="${task.completed}"></td>`;
+                        taskshtml += `<td class="description">${task.description}</td>`;
+                        taskshtml += `<td class="edit-task">Edit</td></tr>`;
+                    })
+                    taskshtml += '</table>';
+
+                    $(this).siblings().html(taskshtml);
+                    //Slide to show Tasks
+                    console.log(taskshtml);
+                    console.log('this', $(this));
+                    $(this).siblings().slideToggle();
+                }
+            })
+        } catch (e) {
+            alert(e)
+        }
     })
 }
 

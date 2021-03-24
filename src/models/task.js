@@ -17,7 +17,7 @@ const taskSchema = new mongoose.Schema({
     },
     folder: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Task',
+        ref: 'Folder',
         default: null
     }
 })

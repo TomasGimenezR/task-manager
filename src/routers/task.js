@@ -30,6 +30,13 @@ router.post('/task', async (req, res) => {
     }
 })
 
+router.get('/tasks/:id', async (req, res) => {
+    const tasks = await Task.find({ folder: req.params.id })
+    console.log(req.params.id)
+    console.log('tasks', tasks)
+    res.send(tasks)
+})
+
 router.patch('/task/:id', async (req, res) => {
     try {
         let task = await Task.findById(req.params.id);
