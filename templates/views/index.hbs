@@ -1,25 +1,6 @@
 <div class="todo-list">
     <h2>To-do List</h2>
-    <div class="task-list">
-        <table>
-            {{#each tasks}}
-            <tr data-id="{{id}}">
-                <td><input type="checkbox"></td>
-                <td class="description">{{description}}</td>
-                <td class="edit-task">Edit</td>
-                <td class="delete-task">Delete</td>
-                <td>
-                    <select id="send-to-folder" name="folder">
-                        <option value="">Send to folder...</option>
-                        {{#each ../folders}}
-                        <option value="{{id}}">{{name}}</option>
-                        {{/each}}
-                    </select>
-                </td>
-            </tr>
-            {{/each}}
-        </table>
-    </div>
+    {{>task_list}}
     <div class="add-task">
         <form action="/task" method="POST">
             <input type="text" name="description" placeholder="New Task" autocomplete="off" required>

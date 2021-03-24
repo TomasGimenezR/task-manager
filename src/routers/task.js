@@ -1,7 +1,6 @@
 const express = require('express')
 const Task = require('../models/task')
 const Folder = require('../models/folder')
-// const auth = require('../middleware/auth')
 const router = new express.Router()
 
 router.get('', async (req, res) => {
@@ -53,6 +52,15 @@ router.delete('/task', async (req, res) => {
     }
 })
 
+router.post('/complete-task', async (req, res) => {
+    try {
+        let task = await Task.findById(req.body.task_id);
+        task.changeCompletion()
+    } catch (e) {
+        res.status(500).send(e);
+    }
+})
+
 router.post('/folder', async (req, res) => {
     const new_folder = new Folder({
         name: req.body.name
@@ -65,6 +73,22 @@ router.post('/folder', async (req, res) => {
     catch (e) {
         console.log(e);
     }
+})
+
+router.post('/moveToFolder', async (req, res) => {
+    try {
+
+        let folder = await Folder.findById(req.body.folder_id)
+        let task = await Task.findById(req.body.task_id)
+
+        folder.tasks.push(task)
+        await folder.save()
+
+        res.status(200).send()
+    } catch (e) {
+        res.status(500).send(e)
+    }
+
 })
 
 module.exports = router;
