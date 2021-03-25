@@ -8,7 +8,9 @@ const folderSchema = new mongoose.Schema({
         trim: true
     }
 })
-
+/**
+ * Removes all Tasks from Folder before deleting it
+ */
 folderSchema.pre('remove', async function (next) {
     const folder = this;
     fol = await Task.deleteMany({ folder });

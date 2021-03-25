@@ -22,6 +22,9 @@ const taskSchema = new mongoose.Schema({
     }
 })
 
+/**
+ * Changes completion of Task. If it was incomplete, this completes it. If it was complete, this incompletes it.
+ */
 taskSchema.methods.changeCompletion = async function () {
     try {
         task = this;

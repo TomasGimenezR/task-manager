@@ -14,7 +14,9 @@ router.get('', async (req, res) => {
         folders
     })
 });
-
+/**
+ * Creates new Task
+ */
 router.post('/task', async (req, res) => {
     const new_task = new Task({
         description: req.body.description,
@@ -30,6 +32,9 @@ router.post('/task', async (req, res) => {
     }
 })
 
+/**
+ * Gets all task in Folder
+ */
 router.get('/tasks/:id', async (req, res) => {
     const tasks = await Task.find({ folder: req.params.id })
     console.log(req.params.id)
@@ -37,6 +42,9 @@ router.get('/tasks/:id', async (req, res) => {
     res.send(tasks)
 })
 
+/**
+ * Updates Task description
+ */
 router.patch('/task/:id', async (req, res) => {
     try {
         let task = await Task.findById(req.params.id);
@@ -49,6 +57,9 @@ router.patch('/task/:id', async (req, res) => {
     }
 })
 
+/**
+ * Deletes a Task
+ */
 router.delete('/task', async (req, res) => {
     try {
         let task = await Task.findByIdAndDelete(req.body.task_id);
@@ -59,6 +70,9 @@ router.delete('/task', async (req, res) => {
     }
 })
 
+/**
+ * Completes a task if incomplete or incomplete a task if completed
+ */
 router.post('/complete-task', async (req, res) => {
     try {
         let task = await Task.findById(req.body.task_id);
@@ -68,6 +82,9 @@ router.post('/complete-task', async (req, res) => {
     }
 })
 
+/**
+ * Creates new folder
+ */
 router.post('/folder', async (req, res) => {
     const new_folder = new Folder({
         name: req.body.name
@@ -82,12 +99,18 @@ router.post('/folder', async (req, res) => {
     }
 })
 
+/**
+ * Deletes a folder and all tasks inside it
+ */
 router.delete('/folder', async (req, res) => {
     const folder = await Folder.findById(req.body.folder_id)
     folder.remove()
     res.status(201).send(folder)
 })
 
+/**
+ * Moves Task to indicated Folder
+ */
 router.post('/moveToFolder', async (req, res) => {
     try {
 

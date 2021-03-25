@@ -1,4 +1,8 @@
+/**
+ * Allows for Task editing and deletion, as well as to complete the task
+ */
 function taskHandling() {
+    //Edit the Task
     $('.edit-task').click(function () {
         var task = $(this).closest('tr').find('td:eq(1)').text();
         var task_id = $(this).closest("tr").attr('data-id');
@@ -22,6 +26,7 @@ function taskHandling() {
         }
     })
 
+    //Delete the Task
     $('.delete-task').click(function () {
         var task_id = $(this).closest("tr").attr('data-id');
         var data = {
@@ -43,6 +48,7 @@ function taskHandling() {
         }
     })
 
+    //Complete Task
     $(".chk-task").change(function () {
         var data = {
             task_id: $(this).closest("tr").attr('data-id'),
@@ -60,6 +66,9 @@ function taskHandling() {
     });
 }
 
+/**
+ * Moves Task to the chosen Folder
+ */
 function moveTaskToFolder() {
     $('.move-to-folder').on('change', function () {
         var folder_id = $(this, 'option:selected').val();
@@ -89,6 +98,9 @@ function moveTaskToFolder() {
     })
 }
 
+/**
+ * Displays the Tasks inside the folder
+ */
 function displayFolderItems() {
     $('.view-folder').click(function () {
         var folder_id = $(this).closest("tr").attr('data-id');
@@ -119,6 +131,9 @@ function displayFolderItems() {
     })
 }
 
+/**
+ * Deletes a folder
+ */
 function removeFolder() {
     $('.remove-folder').click(function () {
         var folder_id = $(this).closest("tr").attr('data-id');
@@ -142,9 +157,26 @@ function removeFolder() {
     })
 }
 
+/**
+ * This can be used to get JWT token from Cookie
+ * @param {*} name 
+ * @returns 
+ */
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+}
+
 $(document).ready(function () {
     taskHandling();
     moveTaskToFolder();
     displayFolderItems();
     removeFolder();
+    // getCookie('x-auth-token')
 })

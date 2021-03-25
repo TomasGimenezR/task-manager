@@ -4,17 +4,11 @@ const jwt = require('jsonwebtoken');
 const config = require('config');
 
 const userSchema = new mongoose.Schema({
-    name: {
+    username: {
         type: String,
         required: true,
         minlength: 5,
-        maxlength: 50
-    },
-    email: {
-        type: String,
-        required: true,
-        minlength: 5,
-        maxlength: 255,
+        maxlength: 50,
         unique: true
     },
     password: {
@@ -26,13 +20,19 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.methods.generateAuthToken = function () {
-    const token = jwt.sign({ _id: this._id }, config.get('jwtPrivateKey'));
+    //In a real world app, I would set the environment variable in the server as follows:
+    // const token = jwt.sign({ _id: this._id }, config.get('jwtPrivateKey'));
+    const token = jwt.sign({ _id: this._id }, 'jwtPrivateKey');
     return token;
 }
 
 const User = mongoose.model('User', userSchema);
 
-
+/**
+ * Validates user to Log In
+ * @param {*} user User to be logged in
+ * @returns true if validated, false if the user isn't in the Database or is incorrect
+ */
 function validateUser(user) {
     const schema = Joi.object({
         name: Joi.string().min(5).max(50).required(),
