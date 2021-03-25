@@ -43,9 +43,9 @@ The app requires the config folder to run, which includes the MongoDB URL to hav
 
 ## Built With
 
-* [Express](https://www.npmjs.com/package/express) - Node.js Framework
-* [MongoDB](https://www.mongodb.com/cloud/atlas) - NoSQL Database motor
-* [jQuery](https://jquery.com/) - JQuery
+* [Express](https://www.npmjs.com/package/express) - Node.js Framework v14.15.1
+* [MongoDB](https://www.mongodb.com/cloud/atlas) - NoSQL Database motor 
+* [jQuery](https://jquery.com/) - JQuery v3.6.0
 
 ## Versioning
 
