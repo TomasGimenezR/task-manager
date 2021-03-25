@@ -2,10 +2,6 @@
 
 This is an assessment given by Ensolvers. The exercise can be found below
 
-## Runtimes
-## Engines
-## Tools
-
 ## Getting Started
 
 The following are the instructions to download and install the project in your local machine
