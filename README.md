@@ -55,12 +55,6 @@ The app requires the config folder to run, which includes the MongoDB URL to hav
 
 * **Tomas Gimenez Rioja** - *Author* - [TomasGimenezR](https://github.com/TomasGimenezR)
 
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-
 ## Endpoints documentation
 
 You can use the following endpoints and verbs
